@@ -8,8 +8,12 @@
             setcookie('acceso','Victor', 0);// Si los campos son correctos se creará la cookie (solo existirá mientras no cerremos el navegador)
             header('Location:index.php');//nos redirige una vez creada a la página principal de la intranet
         }else{
-            echo "<div>Error de usuario y/o contraseña</div>";//Si introducimos un valor mal saldrá este mensaje
+            echo "<div class='text-center text-danger'><strong>Error de usuario y/o contraseña</strong></div>";//Si introducimos un valor mal saldrá este mensaje
         }
+    }
+
+    function salirLogin() {
+        setcookie('acceso','salir',time()-1);
     }
     
     // Función que redirige a la pantalla de login si no hay cookies
