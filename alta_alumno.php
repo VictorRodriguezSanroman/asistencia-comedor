@@ -1,7 +1,6 @@
 <?php
     include_once 'header.php';
     include_once 'nav.php';
-    include 'funciones.php';
 ?>
     <form method="post">
         <div>
@@ -41,6 +40,7 @@
     <div>
         <a href="index.php"><button id="volver">Volver</button></a>
     </div>
-    </main><!-- //OJO -->
-</body>
-</html>
+
+<?php
+    include 'footer.php';
+?>

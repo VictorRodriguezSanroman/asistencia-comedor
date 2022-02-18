@@ -1,5 +1,4 @@
 <?php
-    require("conexion.php");
     include_once 'header.php';
     include_once 'nav.php';
 
@@ -73,7 +72,7 @@
 
         <?php
             if(isset($_POST['botonAsistencia'])){
-                include("conexion.php");
+                conexionBBDD();
                 $sentencia = "SELECT DNI FROM ALUMNOS WHERE CLAVE_CURSO = '5inf'";
                 $resultado = mysqli_query($conexion,$sentencia);
                 

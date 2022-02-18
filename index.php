@@ -1,6 +1,6 @@
 <?php
     echo "<p>Bienvenido/a " . $_COOKIE['acceso'] . " <a href='borrar_cookie.php'><small>(Salir)</small></a></p>";
-    include 'funciones.php';
+
     include_once 'header.php';
     include_once 'nav.php';
 
@@ -27,6 +27,6 @@
     </div>
     
 
-</main><!-- //OJO -->
-</body>
-</html>
+<?php
+    include 'footer.php';
+?>

@@ -1,10 +1,6 @@
 <?php
-    /* require("conexion.php"); */
     include_once 'header.php';
     include_once 'nav.php';
-    include 'funciones.php';
-    
-
 
     $sentencia = "SELECT dni, nombre FROM ALUMNOS WHERE CLAVE_CURSO = '3INF'";
     $resultado = mysqli_query(conexionBBDD(),$sentencia);
@@ -75,7 +71,7 @@
 
         <?php
             if(isset($_POST['botonAsistencia'])){
-                include("conexion.php");
+                conexionBBDD();
                 $sentencia = "SELECT DNI FROM ALUMNOS WHERE CLAVE_CURSO = '3inf'";
                 $resultado = mysqli_query($conexion,$sentencia);
                 
@@ -123,10 +119,8 @@
               
                 mysqli_close($conexion);
             }
+
+            include 'footer.php';
         ?>
 
 
-   
-</main><!-- OJO -->
-</body>
-</html>
