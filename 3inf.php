@@ -56,7 +56,7 @@
         <?php
                     
                 } else {
-                    echo "Error: " . $sentencia . "<br>" . mysqli_error($conexion);
+                    echo "Error: " . $sentencia . "<br>" . mysqli_error(conexionBBDD());
                 }
                 mysqli_free_result($resultado);
                 mysqli_close(conexionBBDD());   
@@ -73,12 +73,12 @@
             if(isset($_POST['botonAsistencia'])){
                 conexionBBDD();
                 $sentencia = "SELECT DNI FROM ALUMNOS WHERE CLAVE_CURSO = '3inf'";
-                $resultado = mysqli_query($conexion,$sentencia);
+                $resultado = mysqli_query(conexionBBDD(),$sentencia);
                 
                 
                 $fecha = $_POST['fecha'];
                 $busquedaFecha = "SELECT FECHA FROM ASISTENCIA_COMEDOR WHERE FECHA = '$fecha'";
-                $resultadoFecha = mysqli_query($conexion,$busquedaFecha);
+                $resultadoFecha = mysqli_query(conexionBBDD(),$busquedaFecha);
 
                 
                 $registroFecha = mysqli_fetch_row($resultadoFecha); 
@@ -93,7 +93,7 @@
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
                             $borrado = "DELETE FROM ASISTENCIA_COMEDOR WHERE FECHA = '$fecha' AND CLAVE_CURSO = '3INF'";
-                            mysqli_query($conexion,$borrado);       
+                            mysqli_query(conexionBBDD(),$borrado);       
                         }
                        
                         do{
@@ -101,7 +101,7 @@
                                 $fecha = $_POST['fecha'];
                                 $asistencia = $_POST[$DNI.'asistencia'];
                                 $sentencia = "INSERT INTO ASISTENCIA_COMEDOR VALUES ('$DNI','$fecha','$asistencia','3INF')";
-                                mysqli_query($conexion,$sentencia);
+                                mysqli_query(conexionBBDD(),$sentencia);
                             }
                         }while($registro = mysqli_fetch_row($resultado));
                         
@@ -110,14 +110,14 @@
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
                             $sentencia = "INSERT INTO ASISTENCIA_COMEDOR VALUES ('$DNI','$fecha','$asistencia','3INF')";
-                            mysqli_query($conexion,$sentencia);
+                            mysqli_query(conexionBBDD(),$sentencia);
                         }
                     
                     }
                      
                 } 
               
-                mysqli_close($conexion);
+                mysqli_close(conexionBBDD());
             }
 
             include 'footer.php';
