@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-    <a class="navbar-brand" href="https://parzibyte.me/blog">
-        <img class="img-fluid" style="max-width: 200px" src="img/parzibyte_logo.png" loading="lazy">
+    <a class="navbar-brand" href="index.php">
+        <img class="img-fluid" style="max-width: 50px" src="img/logo2.png" loading="lazy">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" id="botonMenu" aria-label="Mostrar u ocultar menú">
         <span class="navbar-toggler-icon"></span>

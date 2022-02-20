@@ -6,6 +6,7 @@
             <form method="post" autocomplete="off">
                 <div class="row margenes">
                     <div class="col-md-12 login-form-header">
+                        <img class="img-fluid" style="max-width: 50px" src="img/logo2.png" loading="lazy">
                         <p class="login-form-font-header">Dining <span>Room</span></p>
                     </div>
                 </div>

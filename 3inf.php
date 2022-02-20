@@ -44,7 +44,7 @@
                     </select>
                     <?php
                     echo "</td>";
-                    echo "<td><a href='editar_alumno.php?id=" . $registro[0] . "'>Editar</a></td>";
+                    echo "<td><a href='editar_alumno.php?id=" . $registro[0] . "&nombre=" . $registro[1] . "'>Editar</a></td>";
                     echo "<td><a href='borrar_alumno.php?id=" . $registro[0] . "'>Borrar</a></td>";
                     echo "</tr>";
                 }
