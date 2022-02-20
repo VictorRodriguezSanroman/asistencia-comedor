@@ -2,8 +2,7 @@
     include_once 'header.php';
     include_once 'nav.php';
 
-
-    $sentencia = "SELECT dni, nombre FROM ALUMNOS WHERE CLAVE_CURSO = '5INF'";
+    $sentencia = "SELECT dni, nombre FROM ALUMNOS WHERE CLAVE_CURSO = '5inf'";
     $resultado = mysqli_query(conexionBBDD(),$sentencia);
 
      //Muestra el número de registros del resultado de la consulta SQL
@@ -11,7 +10,7 @@
 
      if(mysqli_query(conexionBBDD(),$sentencia)){
         ?>
-                    <table class="tabla">
+                    <table class="table table-striped">
                         <tr>
                             <form id="registroAsistencia" name="registroAsistencia" method="post">
                             <input type="date" name="fecha"  value="<?php echo date("Y-m-d");?>">
@@ -20,7 +19,7 @@
                         <tr>
                             <?php
                                 //Cabecera de la tabla
-                                $cabecera = array("DNI","NOMBRE");
+                                $cabecera = array("DNI","NOMBRE","ASISTENCIA","EDITAR", "BORRAR");
                                 foreach($cabecera as $dato){
                                     echo "<td class='cabecera'>" . $dato . "</td>";
                                 }
@@ -28,7 +27,7 @@
                         </tr>
         <?php
                 //Se obtiene un registro del resultado de la consulta
-                //SAi no hay más regsitros rale del bucle while
+                //SAi no hay más regsitros sale del bucle while
                 while ($registro = mysqli_fetch_row($resultado)){
                     
                     echo "<tr>";
@@ -39,13 +38,13 @@
                     echo "<td>";
                     ?>
 
-                    <select name="<?php echo $registro[0]?>asistencia" id="asistencia" form="registroAsistencia">
+                    <select name="<?php echo $registro[0]?>asistencia" id="asistencia" class="form-select p-0" style="width:70px; height:30px;" form="registroAsistencia">
                         <option value="SI">SI</option>
                         <option value="NO">NO</option>
                     </select>
                     <?php
                     echo "</td>";
-                    echo "<td><a href='editar_alumno.php?id=" . $registro[0] . "'>Editar</a></td>";
+                    echo "<td><a href='editar_alumno.php?id=" . $registro[0] . "&nombre=" . $registro[1] . "'>Editar</a></td>";
                     echo "<td><a href='borrar_alumno.php?id=" . $registro[0] . "'>Borrar</a></td>";
                     echo "</tr>";
                 }
@@ -78,7 +77,7 @@
                 
                 
                 $fecha = $_POST['fecha'];
-                $busquedaFecha = "SELECT FECHA FROM ASISTENCIA_COMEDOR WHERE FECHA = '$fecha'";
+                $busquedaFecha = "SELECT FECHA FROM ASISTENCIA WHERE FECHA = '$fecha'";
                 $resultadoFecha = mysqli_query(conexionBBDD(),$busquedaFecha);
 
                 
@@ -93,7 +92,7 @@
                         foreach ($registro as $DNI){
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
-                            $borrado = "DELETE FROM ASISTENCIA_COMEDOR WHERE FECHA = '$fecha' AND CLAVE_CURSO = '5INF'";
+                            $borrado = "DELETE FROM ASISTENCIA WHERE FECHA = '$fecha' AND CLAVE_CURSO = '5inf'";
                             mysqli_query(conexionBBDD(),$borrado);       
                         }
                        
@@ -101,7 +100,7 @@
                             foreach ($registro as $DNI){
                                 $fecha = $_POST['fecha'];
                                 $asistencia = $_POST[$DNI.'asistencia'];
-                                $sentencia = "INSERT INTO ASISTENCIA_COMEDOR VALUES ('$DNI','$fecha','$asistencia','5INF')";
+                                $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','5inf')";
                                 mysqli_query(conexionBBDD(),$sentencia);
                             }
                         }while($registro = mysqli_fetch_row($resultado));
@@ -110,7 +109,7 @@
                         foreach ($registro as $DNI){
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
-                            $sentencia = "INSERT INTO ASISTENCIA_COMEDOR VALUES ('$DNI','$fecha','$asistencia','5INF')";
+                            $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','5inf')";
                             mysqli_query(conexionBBDD(),$sentencia);
                         }
                     
@@ -120,10 +119,8 @@
               
                 mysqli_close(conexionBBDD());
             }
+
+            include 'footer.php';
         ?>
 
 
-   
-</main><!-- OJO -->
-</body>
-</html>

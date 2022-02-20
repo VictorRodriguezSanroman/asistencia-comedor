@@ -19,7 +19,7 @@
             <a href="3inf.php"><button class="btn-primary p-5">3er Ciclo de Infantil</button></a>
         </div>
         <div class="col-lg m-4 text-center">
-            <a href=""><button class="btn-primary p-5">4º Ciclo de Infantil</button></a>
+            <a href="4inf.php"><button class="btn-primary p-5">4º Ciclo de Infantil</button></a>
         </div>
         <div class="col-lg m-4   text-center">
             <a href="5inf.php"><button class="btn-primary p-5">5º Ciclo de Infantil</button></a>

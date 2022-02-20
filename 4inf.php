@@ -2,7 +2,7 @@
     include_once 'header.php';
     include_once 'nav.php';
 
-    $sentencia = "SELECT dni, nombre FROM ALUMNOS WHERE CLAVE_CURSO = '3INF'";
+    $sentencia = "SELECT dni, nombre FROM ALUMNOS WHERE CLAVE_CURSO = '4inf'";
     $resultado = mysqli_query(conexionBBDD(),$sentencia);
 
      //Muestra el número de registros del resultado de la consulta SQL
@@ -72,7 +72,7 @@
         <?php
             if(isset($_POST['botonAsistencia'])){
                 conexionBBDD();
-                $sentencia = "SELECT DNI FROM ALUMNOS WHERE CLAVE_CURSO = '3inf'";
+                $sentencia = "SELECT DNI FROM ALUMNOS WHERE CLAVE_CURSO = '4inf'";
                 $resultado = mysqli_query(conexionBBDD(),$sentencia);
                 
                 
@@ -92,7 +92,7 @@
                         foreach ($registro as $DNI){
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
-                            $borrado = "DELETE FROM ASISTENCIA WHERE FECHA = '$fecha' AND CLAVE_CURSO = '3INF'";
+                            $borrado = "DELETE FROM ASISTENCIA WHERE FECHA = '$fecha' AND CLAVE_CURSO = '4inf'";
                             mysqli_query(conexionBBDD(),$borrado);       
                         }
                        
@@ -100,7 +100,7 @@
                             foreach ($registro as $DNI){
                                 $fecha = $_POST['fecha'];
                                 $asistencia = $_POST[$DNI.'asistencia'];
-                                $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','3INF')";
+                                $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','4inf')";
                                 mysqli_query(conexionBBDD(),$sentencia);
                             }
                         }while($registro = mysqli_fetch_row($resultado));
@@ -109,7 +109,7 @@
                         foreach ($registro as $DNI){
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
-                            $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','3INF')";
+                            $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','4inf')";
                             mysqli_query(conexionBBDD(),$sentencia);
                         }
                     
