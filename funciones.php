@@ -56,7 +56,15 @@
 
         //Sentencia para introducir datos
         $sentencia = "INSERT INTO ALUMNOS VALUES ('$dni','$nombre','$curso',$cuenta,$mesa)"; 
-        echo (mysqli_query(conexionBBDD(),$sentencia)) ? "<p>Alta realizada correctamente</p>" : "<p>Error: " . $sentencia ."<br>" . mysqli_error(conexionBBDD()) . "</p>";   
+        echo (mysqli_query(conexionBBDD(),$sentencia)) ? 
+        '<div class="alert alert-success m-3 col-3" role="alert">
+            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>' : 
+        '<div class="alert alert-danger m-3 col-3" role="alert">
+            Faltan campos por rellenar.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';   
         mysqli_close(conexionBBDD());   
     }
 
@@ -67,11 +75,8 @@
 
         $sentencia = "DELETE FROM ALUMNOS WHERE DNI = '$dni'";
 
-        if(mysqli_query(conexionBBDD(),$sentencia)){
-            echo "Borrado correctamente";
-        }else{
-            echo "<p class='rojo'>Error: " . $sentencia . "<br>" . mysqli_error(conexionBBDD()) . "</p>";
-        }
+        mysqli_query(conexionBBDD(),$sentencia);
+
         mysqli_close(conexionBBDD());
         header('Location:' . getenv('HTTP_REFERER'));
     }
@@ -94,7 +99,15 @@
                                          CUENTA_CORRIENTE = $cuenta,
                                          MESA_ASIGNADA = $mesa
                       WHERE DNI = '$dni';"; 
-        echo (mysqli_query(conexionBBDD(),$sentencia)) ? "<p>Datos modificados correctamente</p>" : "<p>Error: " . $sentencia ."<br>" . mysqli_error(conexionBBDD()) . "</p>"; 
+        echo (mysqli_query(conexionBBDD(),$sentencia)) ? 
+        '<div class="alert alert-success m-3 col-3" role="alert">
+            Datos modificados correctamente. <a href="index.php" class="alert-link">Volver</a>.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>' : 
+        '<div class="alert alert-danger m-3 col-3" role="alert">
+            Faltan campos por rellenar.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
         mysqli_close(conexionBBDD());
     }
 ?>

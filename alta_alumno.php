@@ -43,10 +43,6 @@
     }
     ?>
 
-    <div>
-        <br>
-        <a href="index.php"><button id="volver">Volver</button></a>
-    </div>
 
 <?php
     include 'footer.php';
