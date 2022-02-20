@@ -10,7 +10,7 @@
 
      if(mysqli_query(conexionBBDD(),$sentencia)){
         ?>
-                    <table class="tabla">
+                    <table class="table table-striped">
                         <tr>
                             <form id="registroAsistencia" name="registroAsistencia" method="post">
                             <input type="date" name="fecha"  value="<?php echo date("Y-m-d");?>">
@@ -19,7 +19,7 @@
                         <tr>
                             <?php
                                 //Cabecera de la tabla
-                                $cabecera = array("DNI","NOMBRE");
+                                $cabecera = array("DNI","NOMBRE","ASISTENCIA","EDITAR", "BORRAR");
                                 foreach($cabecera as $dato){
                                     echo "<td class='cabecera'>" . $dato . "</td>";
                                 }
@@ -77,7 +77,7 @@
                 
                 
                 $fecha = $_POST['fecha'];
-                $busquedaFecha = "SELECT FECHA FROM ASISTENCIA_COMEDOR WHERE FECHA = '$fecha'";
+                $busquedaFecha = "SELECT FECHA FROM ASISTENCIA WHERE FECHA = '$fecha'";
                 $resultadoFecha = mysqli_query(conexionBBDD(),$busquedaFecha);
 
                 
@@ -92,7 +92,7 @@
                         foreach ($registro as $DNI){
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
-                            $borrado = "DELETE FROM ASISTENCIA_COMEDOR WHERE FECHA = '$fecha' AND CLAVE_CURSO = '3INF'";
+                            $borrado = "DELETE FROM ASISTENCIA WHERE FECHA = '$fecha' AND CLAVE_CURSO = '3INF'";
                             mysqli_query(conexionBBDD(),$borrado);       
                         }
                        
@@ -100,7 +100,7 @@
                             foreach ($registro as $DNI){
                                 $fecha = $_POST['fecha'];
                                 $asistencia = $_POST[$DNI.'asistencia'];
-                                $sentencia = "INSERT INTO ASISTENCIA_COMEDOR VALUES ('$DNI','$fecha','$asistencia','3INF')";
+                                $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','3INF')";
                                 mysqli_query(conexionBBDD(),$sentencia);
                             }
                         }while($registro = mysqli_fetch_row($resultado));
@@ -109,7 +109,7 @@
                         foreach ($registro as $DNI){
                             $fecha = $_POST['fecha'];
                             $asistencia = $_POST[$DNI.'asistencia'];
-                            $sentencia = "INSERT INTO ASISTENCIA_COMEDOR VALUES ('$DNI','$fecha','$asistencia','3INF')";
+                            $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia','3INF')";
                             mysqli_query(conexionBBDD(),$sentencia);
                         }
                     

@@ -35,7 +35,7 @@
         $host = 'localhost';
         $user = 'root';
         $password = '';
-        $baseDatos = 'comedor_prueba';
+        $baseDatos = 'comedor';
 
         $conexion = mysqli_connect($host, $user, $password, $baseDatos);
 
