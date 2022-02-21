@@ -16,7 +16,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link active" href="">Informes</a>
+                <a class="nav-link active" href="informes.php">Informes</a>
             </li>
         </ul>
     </div>

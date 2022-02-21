@@ -13,7 +13,7 @@
                     <table class="table table-striped">
                         <tr>
                             <form id="registroAsistencia" name="registroAsistencia" method="post">
-                            <input type="date" name="fecha"  value="<?php echo date("Y-m-d");?>">
+                                <input type="date" name="fecha"  value="<?php echo date("Y-m-d");?>">
                             </form>
                         </tr>
                         <tr>
@@ -21,7 +21,7 @@
                                 //Cabecera de la tabla
                                 $cabecera = array("DNI","NOMBRE","ASISTENCIA","EDITAR", "BORRAR");
                                 foreach($cabecera as $dato){
-                                    echo "<td class='cabecera'>" . $dato . "</td>";
+                                    echo "<td class='fw-bold'>" . $dato . "</td>";
                                 }
                             ?>
                         </tr>
