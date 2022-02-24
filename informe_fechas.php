@@ -8,7 +8,7 @@
 </div>
 
 <div>
-    <form action="informes.php" class="form-inline mb-2" METHOD="post">
+    <form action="informe_fechas.php" class="form-inline mb-2" METHOD="post">
         <div class="row">
             <div class="col-lg-2 m-1">
                     <!-- Aquí introducimos la fecha de inicio -->

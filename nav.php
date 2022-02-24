@@ -27,7 +27,7 @@
                         Informes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="informes.php">Por fechas</a></li>
+                        <li><a class="dropdown-item" href="informe_fechas.php">Por fechas</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="informe_curso.php">Por curso</a></li>
                         <li><hr class="dropdown-divider"></li>

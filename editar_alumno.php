@@ -51,19 +51,18 @@
             </div>  
             <div class="d-grid gap-2 col-6 mx-auto mt-4">
                 <br>
-                <input type="submit" class="btn btn-primary" value="ACTUALIZAR" name="actualizar">
+                <input type="submit" class="btn btn-primary" value="ACTUALIZAR" name="actualizar" id="alta">
             </div>
         </form>
     </div>
 <?php
     if(isset($_POST['actualizar'])){
         editarAlumno($dni);
+        
     }
+    
 ?>
 
-<div>
-    <a href="3inf.php"><button id="volver">Volver</button></a>
-</div>
 <?php
     include 'footer.php';
 ?>
