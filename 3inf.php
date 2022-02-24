@@ -64,9 +64,7 @@
         ?>
         <br>
         <br>
-        <div id="botones">
-            <a href="index.php"><button id="volver">Volver</button></a>
-        </div>
+        
      
 
         <?php

@@ -78,7 +78,7 @@
         mysqli_query(conexionBBDD(),$sentencia);
 
         mysqli_close(conexionBBDD());
-        header('Location:' . getenv('HTTP_REFERER'));
+        header('Location:' . getenv('HTTP_REFERER'));//VOlvemos a la página anterior
     }
     
     // Función pra editar alumnos
@@ -109,5 +109,17 @@
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
         mysqli_close(conexionBBDD());
+    }
+
+    // Función del buscador
+    function buscador(){
+        $palabraClave = explode(" ",$_POST['palabraClave']); 
+        $sentencia = "SELECT * FROM ALUMNOS WHERE DNI LIKE '%" . $palabraClave[0] . "%' OR NOMBRE LIKE '%" . $palabraClave[0] . "%' OR clave_curso LIKE '%" . $palabraClave[0] . "%' OR cuenta_corriente LIKE '%" . $palabraClave[0] . "%' OR MESA_ASIGNADA LIKE '%" . $palabraClave[0] . "%' ";
+        for ($i=1; $i < count($palabraClave); $i++){
+            if(!empty($palabraClave[$i])){
+                $sentencia .=" OR DNI LIKE '%" . $palabraClave[0] . "%'  OR NOMBRE like '%" . $palabraClave[$i] . "%' OR clave_curso LIKE '%" . $palabraClave[$i] . "%'OR cuenta_corriente LIKE '%" . $palabraClave[$i] . "%' OR MESA_ASIGNADA LIKE '%" . $palabraClave[$i] . "%' ";     
+            }
+        }
+        return $sentencia;
     }
 ?>
