@@ -7,11 +7,11 @@
         <form method="post">
             <div class="form-group">
                 <label for="dni" class="form-control-label">DNI</label>
-                <input type="text" class="form-control" name="dni" id="dni">
+                <input type="text" class="form-control" name="dni" id="dni" minlength="9" maxlength="9">
             </div>
             <div class="form-group">
                 <label for="nombre" class="form-control-label">Nombre</label>
-                <input type="text" class="form-control" name="nombre" id="nombre">
+                <input type="text" class="form-control" name="nombre" id="nombre" maxlength="30">
             </div>
             <div class="form-group">
                 <label for="curso" class="form-control-label">Curso</label>
@@ -24,15 +24,32 @@
             </div>
             <div class="form-group">
                 <label for="cuenta" class="form-control-label">Cuenta Corriente</label>
-                <input type="number" class="form-control" name="cuenta" id="cuenta">
+                <input type="text" class="form-control" name="cuenta" id="cuenta" maxlength="23">
             </div>
             <div class="form-group"> 
                 <label for="mesa" class="form-control-label">Mesa asignada</label>
-                <input type="number" class="form-control" name="mesa" id="mesa">
+                <div class="text-center">
+                    <input type="radio" id="mesa" name="mesa" value="1">
+                    <label>Mesa 1</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="2">
+                    <label>Mesa 2</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="3">
+                    <label>Mesa 3</label><hr>
+                    <input type="radio" id="mesa" name="mesa" value="4">
+                    <label>Mesa 4</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="5">
+                    <label>Mesa 5</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="6">
+                    <label>Mesa 6</label>     
+                </div>
             </div>  
             <div class="d-grid gap-2 col-6 mx-auto mt-4">
                 <br>
-                <input type="submit" class="btn btn-primary" value="ALTA" name="alta">
+                <input type="submit" class="btn btn-primary" id="alta" value="ALTA" name="alta">
             </div>
         </form>
     </div>

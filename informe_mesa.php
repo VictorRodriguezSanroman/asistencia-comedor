@@ -27,10 +27,8 @@
                     <label>Mesa 5</label>
                     <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                     <input type="radio" id="mesa" name="mesa" value="6">
-                    <label>Mesa 6</label>
-
-                
-            </div>
+                    <label>Mesa 6</label>     
+                </div>
             <div class="pt-2">   
                 <!-- Botón de busqueda de fechas -->
                 <button class="btn btn-primary" name="buscar">Buscar</button>

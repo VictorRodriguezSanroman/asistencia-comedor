@@ -9,6 +9,7 @@
     <title>Sistema de registro comedor</title>  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" type="text/javascript"></script>
 </head>
 <body id="cuerpo">
 <main class="container-fluid">
