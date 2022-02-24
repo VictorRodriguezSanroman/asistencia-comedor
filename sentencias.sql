@@ -15,6 +15,13 @@ CREATE TABLE `ASISTENCIA`(
     FOREIGN KEY (`DNI`) REFERENCES `ALUMNOS`(`DNI`) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE `LOGIN`(
+    `ID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `NOMBRE` VARCHAR(10) NOT NULL,
+    `USUARIO` VARCHAR(4) NOT NULL,
+    `PASSWORD` INT(4) NOT NULL
+);
+
 -- Queries
 select a.dni DNI, a.nombre NOMBRE, sum(case when asistencia='SI' THEN 1 ELSE 0 END) AS SI, 
 				   sum(case when asistencia='NO' then 1 else 0 end) as NO, 

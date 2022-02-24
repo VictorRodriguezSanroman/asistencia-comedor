@@ -4,14 +4,21 @@
      ************************************************************************************************/
     // Función para logearse en la app
     function login($usuario, $pass){
-        if($usuario == 'vic' && $pass == '1234'){
-            setcookie('acceso','Victor', 0);// Si los campos son correctos se creará la cookie (solo existirá mientras no cerremos el navegador)
+        conexionBBDD();
+        $sentenciaLogeo = "SELECT * FROM `LOGIN` WHERE USUARIO = '$usuario' AND `PASSWORD` = '$pass'";
+        $resultado = mysqli_query(conexionBBDD(),$sentenciaLogeo);
+        /* $registro = mysqli_fetch_row($resultado);
+        var_dump($registro); */
+        while ($registro = mysqli_fetch_row($resultado)){
+            setcookie('acceso',$registro[1], 0);// Si los campos son correctos se creará la cookie (solo existirá mientras no cerremos el navegador)
             header('Location:index.php');//nos redirige una vez creada a la página principal de la intranet
-        }else{
+        }
+        if(empty($registro)){
             echo "<div class='text-center text-danger'><strong>Error de usuario y/o contraseña</strong></div>";//Si introducimos un valor mal saldrá este mensaje
         }
     }
 
+    //Función para salir del login borrando las cookies
     function salirLogin() {
         setcookie('acceso','salir',time()-1);
     }
@@ -72,13 +79,10 @@
     function borrarAlumnos($dni){
         conexionBBDD();
         $dni = $_GET['id'];
-
         $sentencia = "DELETE FROM ALUMNOS WHERE DNI = '$dni'";
-
         mysqli_query(conexionBBDD(),$sentencia);
-
         mysqli_close(conexionBBDD());
-        header('Location:' . getenv('HTTP_REFERER'));//VOlvemos a la página anterior
+        header('Location:' . getenv('HTTP_REFERER'));//Volvemos a la página anterior
     }
     
     // Función pra editar alumnos
@@ -113,8 +117,10 @@
 
     // Función del buscador
     function buscador(){
+        //Convertimos las palabras introducidas en un array
         $palabraClave = explode(" ",$_POST['palabraClave']); 
         $sentencia = "SELECT * FROM ALUMNOS WHERE DNI LIKE '%" . $palabraClave[0] . "%' OR NOMBRE LIKE '%" . $palabraClave[0] . "%' OR clave_curso LIKE '%" . $palabraClave[0] . "%' OR cuenta_corriente LIKE '%" . $palabraClave[0] . "%' OR MESA_ASIGNADA LIKE '%" . $palabraClave[0] . "%' ";
+        // Bucle para añadir el resto de palabras del array a la sentencia
         for ($i=1; $i < count($palabraClave); $i++){
             if(!empty($palabraClave[$i])){
                 $sentencia .=" OR DNI LIKE '%" . $palabraClave[0] . "%'  OR NOMBRE like '%" . $palabraClave[$i] . "%' OR clave_curso LIKE '%" . $palabraClave[$i] . "%'OR cuenta_corriente LIKE '%" . $palabraClave[$i] . "%' OR MESA_ASIGNADA LIKE '%" . $palabraClave[$i] . "%' ";     
