@@ -6,21 +6,22 @@
     conexionBBDD();
     
     $palabraClave = explode(" ",$_POST['palabraClave']); 
-    $sentencia = "SELECT * FROM ALUMNOS WHERE DNI LIKE '%" . $palabraClave[0] . "%' OR NOMBRE LIKE '%" . $palabraClave[0] . "%' OR clave_curso LIKE '%" . $palabraClave[0] . "%'";
+    $sentencia = "SELECT * FROM ALUMNOS WHERE DNI LIKE '%" . $palabraClave[0] . "%' OR NOMBRE LIKE '%" . $palabraClave[0] . "%' OR clave_curso LIKE '%" . $palabraClave[0] . "%' OR cuenta_corriente LIKE '%" . $palabraClave[0] . "%' OR MESA_ASIGNADA LIKE '%" . $palabraClave[0] . "%' ";
     for ($i=1; $i < count($palabraClave); $i++){
         if(!empty($palabraClave[$i])){
-            $sentencia .=" OR DNI LIKE '%" . $palabraClave[0] . "%'  OR NOMBRE like '%" . $palabraClave[$i] . "%' OR clave_curso LIKE '%" . $palabraClave[$i] . "%'";
+            $sentencia .=" OR DNI LIKE '%" . $palabraClave[0] . "%'  OR NOMBRE like '%" . $palabraClave[$i] . "%' OR clave_curso LIKE '%" . $palabraClave[$i] . "%'OR cuenta_corriente LIKE '%" . $palabraClave[$i] . "%' OR MESA_ASIGNADA LIKE '%" . $palabraClave[$i] . "%' ";
             
             
         }
     }
     $resultado = mysqli_query(conexionBBDD(),$sentencia);
-    echo "Resultados encontrados: " . mysqli_num_rows($resultado) . "<br>";
+    
  }
- echo $sentencia;
  if(mysqli_query(conexionBBDD(),$sentencia)){
     ?>
-                <table class="table table-striped">
+        <div class="col-lg-8 p-3 text-center" style="margin: 0 auto">
+            <span>Resultados encontrados: <?php echo mysqli_num_rows($resultado) ?></span>
+                <table class="table table-striped m-4 col-auto">
                     
                     <tr>
                         <?php
@@ -46,7 +47,8 @@
             }
     ?>
 
-    </table>
+                </table>
+        </div>
     <?php
                 
             } else {

@@ -4,7 +4,7 @@
     include_once 'funciones.php';  
 ?>
 <div class="col-12 p-3">
-    <h1 class="text-center">Informes de asistencia</h1>
+    <h2 class="titulosPagina">Informes de asistencia</h2>
 </div>
 
 <div>

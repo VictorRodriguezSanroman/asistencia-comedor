@@ -33,3 +33,13 @@
  .margenes{
      margin:25px;
  }
+
+ .titulosPagina{
+   width: 100%;
+   text-align:center;
+   padding: 15px;
+ }
+
+ .prueba{
+      background-color: blue;
+ }

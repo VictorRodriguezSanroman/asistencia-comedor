@@ -2,6 +2,7 @@
     include_once 'header.php';
     include_once 'nav.php';
 ?>
+    <h2 class="titulosPagina">Alta alumno</h2>
     <div class="border border-primary rounded col-lg-4 p-3" style="margin: 0 auto">
         <form method="post">
             <div class="form-group">
@@ -16,9 +17,9 @@
                 <label for="curso" class="form-control-label">Curso</label>
                 <select name="curso" class="form-select" id="curso">
                     <option selected>Seleccione un curso</option>
-                    <option value="3INF">Ciclo 3 Infantil</option>
-                    <option value="4INF">Ciclo 4 Infantil</option>
-                    <option value="5INF">Ciclo 5 Infantil</option>
+                    <option value="3INF">Ciclo 3 Infantil - 3INF</option>
+                    <option value="4INF">Ciclo 4 Infantil - 4INF</option>
+                    <option value="5INF">Ciclo 5 Infantil - 5INF</option>
                 </select>
             </div>
             <div class="form-group">
