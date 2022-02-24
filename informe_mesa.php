@@ -5,27 +5,55 @@
 <div class="col-12 p-3">
     <h2 class="titulosPagina">Busqueda alumnos por mesa</h2>
 </div>
-
 <div>
-    <form action="informe_mesa.php" class="form-inline mb-2" METHOD="post">
+    <form action="informe_mesa.php" class="form-inline mb-2 border p-4 text-center" style="width:50%; margin: 0 auto;" METHOD="post">
         <div>
-            <!-- Aquí introducimos la fecha de inicio -->
-            <label for="inicio">MESAS A BUSCAR: </label>
-            <input type="number" id="mesa" name="mesa">        
-            <!-- Botón de busqueda de fechas -->
-            <button class="btn btn-primary" name="buscar">Buscar</button>
+            <div>
+                <h3>Selecciona la mesa: </h3>
+                <div>
+                    <input type="radio" id="mesa" name="mesa" value="1">
+                    <label>Mesa 1</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="2">
+                    <label>Mesa 2</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="3">
+                    <label>Mesa 3</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="4">
+                    <label>Mesa 4</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="5">
+                    <label>Mesa 5</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="mesa" name="mesa" value="6">
+                    <label>Mesa 6</label>
+
+                
+            </div>
+            <div class="pt-2">   
+                <!-- Botón de busqueda de fechas -->
+                <button class="btn btn-primary" name="buscar">Buscar</button>
+            </div>
+            
         </div>
     </form>
 </div>
     <?php
         
         if(isset($_POST['buscar'])){
-            $mesa = $_POST['mesa'];
+
+ 
+                $mesa = $_POST['mesa'];
+
+
+            
+           
             echo "<h4 class='titulosPagina'>Alumnos sentados en la mesa: " . $mesa . "</h4>";
             //Sentencia SQL y almacenar en $resultado su ejecución
             $sentencia = "SELECT DNI, NOMBRE, CLAVE_CURSO
                             FROM ALUMNOS 
-                            WHERE MESA_ASIGNADA = '$mesa';";
+                            WHERE MESA_ASIGNADA = '$mesa'";
             $resultado = mysqli_query(conexionBBDD(),$sentencia);
 
             if(mysqli_query(conexionBBDD(),$sentencia)){

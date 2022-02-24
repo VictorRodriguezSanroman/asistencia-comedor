@@ -1,4 +1,4 @@
-<nav class="navbar nav-tabs navbar-expand-lg navbar-light bg-white fixed-top">
+<nav id="barra" class="navbar nav-tabs navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
             <img class="img-fluid" style="max-width: 50px" src="img/logo2.png" loading="lazy">

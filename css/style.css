@@ -40,6 +40,25 @@
    padding: 15px;
  }
 
- .prueba{
-      background-color: blue;
+ #cuerpo{   
+   padding-top: 80px;
+   padding-bottom: 80px;
  }
+#barra{
+   background-color: #ddf4ff;
+}
+ul>li{
+   font-size: 18px;
+}
+ul>li:hover{
+   border-top: 3px solid black;
+   background-color:aliceblue;
+}
+ footer{
+    height: 50px;
+    
+ }
+ .labelFechas{
+    width: 20%;
+ }
+

@@ -9,16 +9,23 @@
 
 <div>
     <form action="informes.php" class="form-inline mb-2" METHOD="post">
-        <div>
-            <!-- Aquí introducimos la fecha de inicio -->
-            <label for="inicio">Fecha de inicio</label>
-            <input type="date" id="inicio" name="inicio" value="<?php echo date("Y-m-d"); ?>">
-            <!-- Aquí introducimos la fecha final del periodo que queremos buscar -->
-            <label for="final">Fecha final</label>
-            <input type="date" id="final" name="final" value="<?php echo date("Y-m-d"); ?>">
-            
-            <!-- Botón de busqueda de fechas -->
-            <button class="btn btn-primary" name="buscar">Buscar</button>
+        <div class="row">
+            <div class="col-lg-2 m-1">
+                    <!-- Aquí introducimos la fecha de inicio -->
+                <label for="inicio" class="labelFechas">Inicio:</label>
+                <input type="date" id="inicio" name="inicio" value="<?php echo date("Y-m-d"); ?>">
+            </div>
+            <div class="col-lg-2 m-1">
+                <!-- Aquí introducimos la fecha final del periodo que queremos buscar -->
+                <label for="final" class="labelFechas">Final:</label>
+                <input type="date" id="final" name="final" value="<?php echo date("Y-m-d"); ?>">
+            </div>   
+        </div>
+        <div clas="row">
+                <div class="col-lg-4 m-2 ">
+                    <!-- Botón de busqueda de fechas -->
+                    <button class="col-lg-4 btn btn-primary" name="buscar">Buscar</button>
+                </div>
         </div>
     </form>
 </div>
@@ -27,52 +34,15 @@
             //Guerdamos en variables las fechas
             $fechaInicio = $_POST['inicio'];
             $fechaInicioSeparada = explode('-',$fechaInicio);
-            $diaInicio = (int)$fechaInicioSeparada[2];
-            $mesInicio = (int)$fechaInicioSeparada[1];
-            $añoInicio = (int)$fechaInicioSeparada[0];
+            $diaInicio = $fechaInicioSeparada[2];
+            $mesInicio = $fechaInicioSeparada[1];
+            $añoInicio = $fechaInicioSeparada[0];
             $fechaFinal = $_POST['final'];
             $fechaFinalSeparada = explode('-',$fechaFinal);
-            $diaFinal = (int)$fechaFinalSeparada[2];
-            $mesFinal = (int)$fechaFinalSeparada[1];
-            $añoFinal = (int)$fechaFinalSeparada[0];
-            switch ($mesFinal) {
-                case 1:
-                    $mes = "Enero";
-                    break;
-                case 2:
-                    $mes = "Febrero";
-                    break;
-                case 3:
-                    $mes = "Marzo";
-                    break;
-                case 4:
-                    $mes = "Abril";
-                    break;
-                case 5:
-                    $mes = "Mayo";
-                    break;
-                case 6:
-                    $mes = "Junio";
-                    break;
-                case 7:
-                    $mes = "Julio";
-                    break;
-                case 8:
-                    $mes = "Agosto";
-                    break;
-                case 9:
-                    $mes = "Septiembre";
-                    break;
-                case 10:
-                    $mes = "Octubre";
-                    break;
-                case 11:
-                    $mes = "Noviembre";
-                    break;
-                case 12:
-                    $mes = "Diciembre";
-                    break;
-            }
+            $diaFinal = $fechaFinalSeparada[2];
+            $mesFinal = $fechaFinalSeparada[1];
+            $añoFinal = $fechaFinalSeparada[0];
+
             //Sentencia SQL y almacenar en $resultado su ejecución
             $sentencia = "SELECT a.dni, a.nombre, sum(CASE WHEN ASISTENCIA='SI' THEN 1 ELSE 0 END), 
                                                   sum(CASE WHEN ASISTENCIA='NO' THEN 1 ELSE 0 END), 
@@ -87,13 +57,14 @@
             if(mysqli_query(conexionBBDD(),$sentencia)){
     ?>  
             <div class="col-12 p-3">
-                <h4 class="text-center">Periodo del <?php echo $diaInicio; ?> al  <?php echo $diaFinal; ?> de <?php echo $mes ?> del <?php echo $añoFinal; ?></h4>
+                <h4 class="text-center">Periodo del <?php echo $diaInicio . '/' . $mesInicio . '/' . $añoInicio; ?> al <?php echo $diaFinal. '/' . $mesFinal . '/' . $añoFinal; ?></h4>
             </div>
-            <table class="table table-striped">
+        <div class="col-lg-8 p-3 text-center" style="margin: 0 auto">
+            <table class="table table-striped m-4 col-auto">
                 <tr>
                     <?php
                         //Cabecera de la tabla de datos
-                        $cabecera = array("DNI", "NOMBRE","SI","NO","CURSO","MESA");
+                        $cabecera = array("DNI", "NOMBRE","ASISTENCIA","AUSENCIA","CURSO","MESA");
                         foreach($cabecera as $dato){
                             echo "<td class='fw-bold'>" . $dato . "</td>";
                         }
@@ -110,6 +81,7 @@
             }
     ?>
             </table>
+        </div>
     <?php
             }else{
                 echo "Error: " . $sentencia . "<br>" . mysqli_error(conexionBBDD());

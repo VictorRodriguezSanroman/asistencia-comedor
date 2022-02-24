@@ -7,13 +7,27 @@
 </div>
 
 <div>
-    <form action="informe_curso.php" class="form-inline mb-2" METHOD="post">
+    <form action="informe_curso.php" class="form-inline mb-2 border p-4 text-center" style="width:50%; margin: 0 auto;" METHOD="post">
         <div>
-            <!-- Aquí introducimos la fecha de inicio -->
-            <label for="inicio">Curso a buscar: </label>
-            <input type="text" id="curso" name="curso">        
-            <!-- Botón de busqueda de fechas -->
-            <button class="btn btn-primary" name="buscar">Buscar</button>
+            <div>
+                <h3>Curso a buscar: </h3>
+                <div>
+                    <input type="radio" id="curso" name="curso" value="3inf">
+                    <label>3º de Infantil - 3INF</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="curso" name="curso" value="4inf">
+                    <label>4º de Infantil - 3INF</label>
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <input type="radio" id="curso" name="curso" value="5inf">
+                    <label>5º de Infantil - 3INF</label> 
+
+                
+            </div>
+            <div class="pt-2">   
+                <!-- Botón de busqueda de fechas -->
+                <button class="btn btn-primary" name="buscar">Buscar</button>
+            </div>
+            
         </div>
     </form>
 </div>
