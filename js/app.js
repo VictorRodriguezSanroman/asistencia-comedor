@@ -26,5 +26,13 @@ function validaCC(){
     return true;
 }
 
+//Funcion que hace desaparecer el div transcurridos 3000 milisegundos!
+$(document).ready(function() {
+    setTimeout(function() {
+        // Declaramos la capa mediante una clase para ocultarlo
+        $(".confirmacion").fadeOut(1500);
+    },2000);
+});
+
 
 window.addEventListener('load', comienzo,false);

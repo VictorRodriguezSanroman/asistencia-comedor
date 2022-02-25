@@ -42,12 +42,20 @@
         if(isset($_POST['buscar'])){
 
  
+            if(isset($_POST['mesa'])){
                 $mesa = $_POST['mesa'];
+            }else{
+                $mesa = NULL;
+            }
 
 
-            
+            if($mesa == NULL){
+                echo " ";
+            }else{
+                echo "<h4 class='titulosPagina'>Alumnos sentados en la mesa: " . $mesa . "</h4>";
+            }
            
-            echo "<h4 class='titulosPagina'>Alumnos sentados en la mesa: " . $mesa . "</h4>";
+            
             //Sentencia SQL y almacenar en $resultado su ejecución
             $sentencia = "SELECT DNI, NOMBRE, CLAVE_CURSO
                             FROM ALUMNOS 
@@ -61,10 +69,18 @@
                 <tr>
                     <?php
                         //Cabecera de la tabla de datos
-                        $cabecera = array("DNI", "NOMBRE","CURSO");
-                        foreach($cabecera as $dato){
-                            echo "<td class='fw-bold'>" . $dato . "</td>";
+                        if($mesa == NULL){
+                            echo '<div class="alert alert-danger" role="alert">
+                            Selecciona una mesa.
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                        }else{
+                            $cabecera = array("DNI", "NOMBRE","CURSO");
+                            foreach($cabecera as $dato){
+                                echo "<td class='fw-bold'>" . $dato . "</td>";
+                            }
                         }
+                        
                     ?>
                 </tr>
     <?php

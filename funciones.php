@@ -12,7 +12,7 @@
             header('Location:index.php');//nos redirige una vez creada a la página principal de la intranet
         }
         if(empty($registro)){
-            echo "<div class='text-center text-danger'><strong>Error de usuario y/o contraseña</strong></div>";//Si introducimos un valor mal saldrá este mensaje
+            echo "<div class='confirmacion text-center text-danger'><strong>Error de usuario y/o contraseña</strong></div>";//Si introducimos un valor mal saldrá este mensaje
         }
     }
 
@@ -57,16 +57,21 @@
         $nombre = $_POST['nombre'];
         $curso = $_POST['curso'];
         $cuenta = $_POST['cuenta'];
-        $mesa = $_POST['mesa'];
+        if(isset($_POST['mesa'])){
+            $mesa = $_POST['mesa'];
+        }else{
+            $mesa = NULL;
+        }
+        
 
         //Sentencia para introducir datos
         $sentencia = "INSERT INTO ALUMNOS VALUES ('$dni','$nombre','$curso',$cuenta,$mesa)"; 
         echo (mysqli_query(conexionBBDD(),$sentencia)) ? 
-        '<div class="alert alert-success m-3 col-3" role="alert">
+        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
             Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>' : 
-        '<div class="alert alert-danger m-3 col-3" role="alert">
+        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
             Faltan campos por rellenar.
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';   
@@ -92,7 +97,11 @@
         $nombre = $_POST['nombre'];
         $curso = $_POST['curso'];
         $cuenta = $_POST['cuenta'];
-        $mesa = $_POST['mesa'];
+        if(isset($_POST['mesa'])){
+            $mesa = $_POST['mesa'];
+        }else{
+            $mesa = NULL;
+        }
 
         //Sentencia para modificar datos
         $sentencia = "UPDATE ALUMNOS SET DNI = '$dniMod',
@@ -102,11 +111,11 @@
                                          MESA_ASIGNADA = $mesa
                       WHERE DNI = '$dni';"; 
         echo (mysqli_query(conexionBBDD(),$sentencia)) ? 
-        '<div class="alert alert-success m-3 col-3" role="alert">
+        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
             Datos modificados correctamente. <a href="index.php" class="alert-link">Volver</a>.
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>' : 
-        '<div class="alert alert-danger m-3 col-3" role="alert">
+        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
             Faltan campos por rellenar.
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
@@ -213,26 +222,30 @@
                                 $borrado = "DELETE FROM ASISTENCIA WHERE FECHA = '$fecha' AND CLAVE_CURSO = $curso";
                                 mysqli_query(conexionBBDD(),$borrado);       
                             }
-                        //Y volvemos a guardar los datos sustituyendo a los borrados anteriormente
-                        do{
+                                //Y volvemos a guardar los datos sustituyendo a los borrados anteriormente
+                                do{
+                                    foreach ($registro as $DNI){
+                                        $fecha = $_POST['fecha'];
+                                        $asistencia = $_POST[$DNI.'asistencia'];
+                                        $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia',$curso)";
+                                        mysqli_query(conexionBBDD(),$sentencia);
+                                    }
+                                }while($registro = mysqli_fetch_row($resultado));      
+                        }else{
+                            //Si no hay registros se crean de 0
                             foreach ($registro as $DNI){
                                 $fecha = $_POST['fecha'];
                                 $asistencia = $_POST[$DNI.'asistencia'];
                                 $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia',$curso)";
                                 mysqli_query(conexionBBDD(),$sentencia);
-                            }
-                        }while($registro = mysqli_fetch_row($resultado));      
-                }else{
-                    //Si no hay registros se crean de 0
-                    foreach ($registro as $DNI){
-                        $fecha = $_POST['fecha'];
-                        $asistencia = $_POST[$DNI.'asistencia'];
-                        $sentencia = "INSERT INTO ASISTENCIA VALUES ('$DNI','$fecha','$asistencia',$curso)";
-                        mysqli_query(conexionBBDD(),$sentencia);
+                            }   
+                        }        
                     }   
-                }        
-            }   
-            mysqli_close(conexionBBDD());
-        }
+                            echo '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+                            Asistencia registrada.
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                    mysqli_close(conexionBBDD());
+                }
     }
 ?>
